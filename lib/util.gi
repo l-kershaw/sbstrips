@@ -633,3 +633,49 @@ InstallMethod(
         fi;
     end
 );
+
+InstallMethod(
+    QuotientQuiver,
+    "for a quiver and a partition of its vertices",
+    [ IsQuiver, IsHomogeneousList ],
+    function( Q, parts )
+        local
+            vertices,   # list of vertices of constructed quiver
+            arrows,     # list of arrows of constructed quiver
+            p,          # loop variable for classes of the partition
+            a,          # loop variable for arrows of input quiver
+            find_class, # helper function for finding partition class of vertex
+            s, t;       # ends of an arrow in construction loop
+
+        if not ForAll( parts, IsList ) then
+            return fail;
+        elif Set( Flat( parts ) ) <> Set( VerticesOfQuiver( Q ) ) then
+            return fail;
+        elif Length( Flat( parts ) ) <> NumberOfVertices( Q ) then
+            return fail;
+        fi;
+
+        vertices := List( [ 1..Length( parts ) ], i -> Concatenation( "v", String( i ) ) );
+
+        find_class := function( vertex )
+            local i;
+            i := 1;
+            while i <= Length( parts ) do
+                if vertex in parts[ i ] then
+                    return i;
+                fi;
+                i := i + 1;
+            od;
+            return fail;
+        end;
+
+        arrows := [];
+        for a in ArrowsOfQuiver( Q ) do
+            s := Concatenation( "v", String( find_class( SourceOfPath( a ) ) ) );
+            t := Concatenation( "v", String( find_class( TargetOfPath( a ) ) ) );
+            Add( arrows, [ s, t, String( a ) ] );
+        od;
+
+        return Quiver( vertices, arrows );
+    end
+);

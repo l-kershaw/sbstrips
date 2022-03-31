@@ -374,3 +374,5 @@ DeclareAttribute( "PathOneArrowLongerAtSource", IsPath );
 DeclareAttribute( "PathOneArrowLongerAtTarget", IsPath );
 DeclareAttribute( "PathOneArrowShorterAtSource", IsPath );
 DeclareAttribute( "PathOneArrowShorterAtTarget", IsPath );
+
+DeclareOperation( "QuotientQuiver", [ IsQuiver, IsHomogeneousList ] );
