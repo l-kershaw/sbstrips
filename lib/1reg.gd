@@ -66,6 +66,25 @@ DeclareAttribute( "1RegQuivIntActionFunction", IsQuiver );
 ##  <#/GAPDoc>
 DeclareOperation( "1RegQuivIntAct", [ IsPath, IsInt ] );
 
+##  <#GAPDoc Label="DocGen1RegQuiver">
+##  <ManSection>
+##    <Oper Name="Gen1RegQuiver" Arg="cycle_lengths"/>
+##    <Description>
+##      Arguments: <A>cycle_lengths</A>, a list of positive integers.
+##      <Br />
+##    </Description>
+##    <Returns>
+##      a 1-regular quiver where the cycles have the provided lengths.
+##    </Returns>
+##    <Description>
+##      Recall that the connected components of a <M>1</M>-regular quiver
+##      must each be a cycle, so all <M>1</M>-regular quivers can be
+##      constructed by this function.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareOperation( "Gen1RegQuiver", [ IsHomogeneousList ] );
+
 ##  <#GAPDoc Label="DocPathBySourceAndLength">
 ##  <ManSection>
 ##    <Oper Name="PathBySourceAndLength" Arg="vert, len"/>
